@@ -7,7 +7,9 @@ export type Database = {
           updated_at:string;
           username:string|null;
           full_name:string|null;
-          email:string
+          email:string;
+          bio:string|null;
+          preferred_theme:"system"|"light"|"dark";
         };
         Insert:{
           id:string;
@@ -15,16 +17,57 @@ export type Database = {
           username?:string|null;
           full_name?:string|null;
           email:string;
-
+          bio?:string|null;
+          preferred_theme?:"system"|"light"|"dark";
         };
         Update:{
           id?:string;
           updated_at?:string;
           username?:string|null;
           full_name?:string|null;
-          email?:string
+          email?:string;
+          bio?:string|null;
+          preferred_theme?:"system"|"light"|"dark";
+        }
+      },
+      tasks:{
+        Row:{
+          id:string;
+          user_id:string;
+          title:string;
+          description:string|null;
+          status:"todo"|"in_progress"|"done";
+          due_date:string|null;
+          priority:"low"|"medium"|"high";
+          created_at:string;
+          updated_at:string;
+        };
+        Insert:{
+          id?:string;
+          user_id:string;
+          title:string;
+          description?:string|null;
+          status?:"todo"|"in_progress"|"done";
+          due_date?:string|null;
+          priority?:"low"|"medium"|"high";
+          created_at?:string;
+          updated_at?:string;
+        };
+        Update:{
+          id?:string;
+          user_id?:string;
+          title?:string;
+          description?:string|null;
+          status?:"todo"|"in_progress"|"done";
+          due_date?:string|null;
+          priority?:"low"|"medium"|"high";
+          created_at?:string;
+          updated_at?:string;
         }
       }
     }
   }
 }
+
+export type TablesUpdate<T extends keyof Database["public"]["Tables"]> =
+  Database["public"]["Tables"][T]["Update"];

@@ -1,12 +1,12 @@
 import { loginSchema } from "@/app/validationSchema";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request:NextRequest){
  try{
   const body = await request.json()
   const validateData = loginSchema.parse(body)
-  const supabase = await createClientComponentClient()
+  const supabase = await createServerSupabaseClient()
   const {data,error} = await supabase.auth.signInWithPassword({
     email: validateData.email,
     password: validateData.password

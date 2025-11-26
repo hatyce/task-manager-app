@@ -9,5 +9,5 @@ export async function GET(request:NextRequest) {
     const supabase = await createServerSupabaseClient()
     await supabase.auth.exchangeCodeForSession(code)
   }
-  return NextResponse.redirect(new URL("/", requestUrl))
+  return NextResponse.redirect(new URL("/dashboard", requestUrl))
 }

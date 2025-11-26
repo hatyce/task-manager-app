@@ -3,7 +3,7 @@ import { useAuthStore } from "./use-auth-store";
 import { createClientSupabaseClient } from "./supabase/client";
 import { useCallback } from "react";
 
-export function usesignOut() {
+export function useSignOut() {
   const router = useRouter();
   const { setLoading, clearSession } = useAuthStore();
   const supabase = createClientSupabaseClient();
